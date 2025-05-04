@@ -7,7 +7,7 @@ from fuzzywuzzy import process
 import numpy as np
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "http://localhost:8080"}})  # Or your actual Node.js domain
+CORS(app, resources={r"/predict": {"origins": "https://final-year-project-t7pw.onrender.com"}})  # Or your actual Node.js domain
 
 
 # Load model and data
