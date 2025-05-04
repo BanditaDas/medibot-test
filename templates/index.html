@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MediBot</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2em; max-width: 600px; margin: auto; }
+    input[type="text"] { width: 100%; padding: 10px; margin-bottom: 1em; }
+    button { padding: 10px 20px; }
+    #result { margin-top: 1em; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>🩺 MediBot - Symptom Checker</h2>
+  <input type="text" id="symptomsInput" placeholder="Enter your symptoms..." />
+  <button onclick="predictDisease()">Check Disease</button>
+  <div id="result"></div>
+
+  <script>
+    async function predictDisease() {
+      const input = document.getElementById("symptomsInput").value;
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "⏳ Checking...";
+
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: input })
+        });
+
+        const data = await response.json();
+        resultDiv.innerHTML = "🧠 Possible diseases:<br>" + data.predictions.map(d => "• " + d).join("<br>");
+      } catch (error) {
+        resultDiv.innerHTML = "❌ Error: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
