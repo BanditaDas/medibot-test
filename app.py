@@ -55,5 +55,11 @@ def predict():
     predictions = predict_diseases(model, cleaned_symptoms)
     return jsonify({"predictions": predictions})
 
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    return "pong", 200
+
+
 if __name__ == "__main__":
     app.run(debug=True)
