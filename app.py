@@ -12,7 +12,7 @@ CORS(app, resources={r"/predict": {"origins": "https://final-year-project-t7pw.o
 
 # Load model and data
 model = joblib.load("model.pkl")
-df = pd.read_csv("diseases_symptoms_medicines.csv")
+df = pd.read_csv("diseases.csv")
 
 # Generate symptom list
 def get_symptom_list(df):
