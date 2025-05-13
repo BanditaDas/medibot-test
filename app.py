@@ -9,9 +9,11 @@ import numpy as np
 app = Flask(__name__)
 CORS(app, resources={r"/predict": {"origins": "https://final-year-project-t7pw.onrender.com"}})  # Or your actual Node.js domain
 
+
 # Load model and data
 model = joblib.load("model.pkl")
 df = pd.read_csv("diseases.csv")
+
 
 # Generate symptom list
 def get_symptom_list(df):
